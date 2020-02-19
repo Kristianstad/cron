@@ -1,0 +1,21 @@
+writeCrontab(){
+   local IFS=$(echo -en "\n\b")
+   local tmpFile="$(mktemp)"
+   local name=""
+   local cmd=""
+   local cron=""
+   local cronVar=""
+   local cronVars="$(set | /bin/grep "VAR_cron_")"
+   for cronVar in $cronVars
+   do
+      name=${cronVar%%=*}
+      name=${name#VAR_cron_}
+      eval "cmd=\"$(echo \"\$VAR_cmd_$name\")\""
+      cron="$(removeSingleQuotes ${cronVar#*=})"
+      echo "$cron /usr/bin/env -i $cmd" >> "$tmpFile"
+   done
+   /usr/bin/crontab -u root "$tmpFile"
+   /bin/rm -f "$tmpFile"
+   /usr/bin/crontab -u root -l
+   echo
+}
