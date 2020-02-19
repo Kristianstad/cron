@@ -33,8 +33,6 @@ COPY --from=build /finalfs /
 # Final
 # =========================================================================
 ENV VAR_FINAL_COMMAND="/usr/sbin/crond -f -d 8" \
-    VAR_BACKUP_DIR="/backup" \
-    VAR_DELETE_DUPLICATES="yes" \
     VAR_KEEP_CAPS="cap_setuid,cap_setgid"
 
 # Generic template (don't edit) <BEGIN>
