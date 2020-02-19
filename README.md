@@ -7,7 +7,7 @@ Secure and Minimal Docker base-image for cron scheduling.
 * VAR_FINAL_COMMAND="/usr/sbin/crond -f -d 8"
 
 ### Other runtime variables
-* VAR_&lt;name&gt;: Name of cron job.
+* VAR_&lt;name&gt;: (optional) A command that, at cron-time, generates a serial.
 * VAR_cmd_&lt;name&gt;: The command run by named cron job.
 * VAR_cron_&lt;name&gt;: When to run named cron job.
 
