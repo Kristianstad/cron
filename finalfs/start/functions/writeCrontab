@@ -5,7 +5,7 @@ writeCrontab(){
    local cmd=""
    local cron=""
    local cronVar=""
-   local cronVars="$(set | /bin/grep "VAR_cron_")"
+   local cronVars="$(set | /bin/grep "^VAR_cron_")"
    for cronVar in $cronVars
    do
       name=${cronVar%%=*}
