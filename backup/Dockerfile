@@ -1,5 +1,5 @@
-# Secure and Minimal image of Cron
-# https://hub.docker.com/repository/docker/huggla/sam-cron
+# Secure and Minimal image of Cron for backup purposes
+# https://hub.docker.com/repository/docker/huggla/sam-cron:backup
 
 # =========================================================================
 # Init
