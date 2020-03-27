@@ -24,7 +24,7 @@ commandForBackupToDir(){
    do
       database="$(trim $database)"
       file="$backupDir/$database"
-      dumpCmd="$dumpCmd $delimiter /usr/local/bin/pg_dump --host=$VAR_HOST --port=$VAR_PORT --username=$VAR_LINUX_USER --dbname=$database --file=$file"
+      dumpCmd="$dumpCmd $delimiter /usr/local/bin/pg_dump --create --host=$VAR_HOST --port=$VAR_PORT --username=$VAR_LINUX_USER --dbname=$database --file=$file"
       eval "format=\$VAR_$database_format"
       if [ -z "$format" ]
       then
