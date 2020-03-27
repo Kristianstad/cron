@@ -32,7 +32,8 @@ COPY --from=build /finalfs /
 # =========================================================================
 # Final
 # =========================================================================
-ENV VAR_FINAL_COMMAND="/usr/sbin/crond -f -d 8" \
+ENV VAR_LINUX_USER="cron" \
+    VAR_FINAL_COMMAND="/usr/sbin/crond -f -d 8" \
     VAR_KEEP_CAPS="cap_setuid,cap_setgid"
 
 # Generic template (don't edit) <BEGIN>
