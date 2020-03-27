@@ -1,5 +1,5 @@
 # sam-cron:backup-postgres
-A Secure and Minimal Docker image for backing up Postgresql databases.
+Secure and Minimal Docker-image for backing up Postgresql databases.
 
 ## Environment variables
 ### pre-set runtime variables
