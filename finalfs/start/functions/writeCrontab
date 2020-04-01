@@ -11,9 +11,9 @@ writeCrontab(){
       name=${cronVar%%=*}
       name=${name#VAR_cron_}
       eval "cmd=\"$(echo \"\$VAR_cmd_$name\")\""
-      if [ -z "$cmd" ]
+      if [ -z "$cmd" ] && [ -n "$VAR_CRON_CMD" ]
       then
-         eval "cmd=\"$(echo \"$VAR_cmd\")\""
+         eval "cmd=\"$(echo \"$VAR_CRON_CMD\")\""
       fi
       cron="$(removeSingleQuotes ${cronVar#*=})"
       echo "$cron /usr/bin/env -i $cmd" >> "$tmpFile"
