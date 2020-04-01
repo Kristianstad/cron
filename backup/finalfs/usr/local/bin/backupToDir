@@ -3,7 +3,7 @@ cd /
 set -ef +am
 . "$(/usr/bin/dirname $0)/includeFunctions"
 
-backupDir="$1"
+backupDir="VAR_BACKUP_DIR/$1"
 backupDirName="$(/usr/bin/basename "$backupDir")"
 readEnvironmentVars
 /bin/mkdir -m 770 -p "$backupDir"
