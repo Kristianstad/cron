@@ -13,11 +13,11 @@ writeCrontab(){
       cmd="$(eval "echo \"\$VAR_cmd_$name\"")"
       if [ -z "$cmd" ] && [ -n "$VAR_CRON_CMD" ]
       then
-         cmd="$(eval "echo \"$VAR_CRON_CMD\"")"
+         cmd="$(eval "echo \"$VAR_CRON_CMD\" | sed 's/\$(/\\\$(/g'")"
       fi
-      while echo "$cmd" | grep -q '\$'
+      while echo "$cmd" | grep -q '\$[^(]'
       do
-         cmd="$(eval "echo \"$cmd\"")"
+         cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
       done
       cron="$(removeSingleQuotes ${cronVar#*=})"
       echo "$cron /usr/bin/env -i $cmd" >> "$tmpFile"
