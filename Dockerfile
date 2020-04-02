@@ -9,6 +9,9 @@ ARG SaM_VERSION="2.0.1"
 ARG IMAGETYPE="base"
 ARG MAKEDIRS="/var/spool/cron/crontabs"
 ARG EXPOSEFUNCTIONS="readEnvironmentVars runBinCmdAsLinuxUser execCmdAsLinuxUser trim"
+ARG BUILDDEPS="coreutils"
+ARG BUILDCMDS="cp -a /bin/date /finalfs/usr/local/bin/"
+ARG EXECUTABLES="/usr/local/bin/date"
 # ARGs (can be passed to Build/Final) </END>
 
 # Generic template (don't edit) <BEGIN>
