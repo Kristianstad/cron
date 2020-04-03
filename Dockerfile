@@ -7,10 +7,17 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="2.0.1"
 ARG IMAGETYPE="base"
+ARG COREUTILS_VERSION="8.32"
 ARG MAKEDIRS="/var/spool/cron/crontabs"
 ARG EXPOSEFUNCTIONS="readEnvironmentVars runBinCmdAsLinuxUser execCmdAsLinuxUser trim"
+ARG DOWNLOADS="https://github.com/coreutils/coreutils/archive/v$COREUTILS_VERSION.tar.gz"
 ARG BUILDDEPS="coreutils"
-ARG BUILDCMDS="cp -a /bin/date /finalfs/usr/local/bin/"
+ARG BUILDCMDS=\
+"   cd coreutils-$COREUTILS_VERSION "\
+'&& eval "$COMMON_CONFIGURECMD --enable-install-program=date --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info --disable-nls --without-gmp" '\
+'&& eval "$COMMON_MAKECMDS" '\
+'&& cp -a /us
+
 ARG EXECUTABLES="/usr/local/bin/date"
 # ARGs (can be passed to Build/Final) </END>
 
