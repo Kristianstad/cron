@@ -14,15 +14,15 @@ Secure and Minimal Docker base-image for cron scheduling.
 ## Cron examples
 >VAR_weekdays="/bin/date +%a"  
 VAR_cmd_weekdays="cp -a /data /backup/\$VAR_weekdays"  
-VAR_cron_weekdays="0 21 \* \* 1-5"
+VAR_cron_weekdays="0 21 * * 1-5"
 
 >VAR_weekly="(( $(/bin/date +%d) + 6 ) / 7)"  
 VAR_cmd_weekly="cp -a /data /backup/\$VAR_weekly"  
-VAR_cron_weekly="0 19 \* \* 5"
+VAR_cron_weekly="0 19 * * 5"
 
 >VAR_monthly="/bin/date +%b"  
-VAR_cmd_monthly="cp -a /data /backup/\$VAR_monthly"  
-VAR_cron_monthly="0 17 1 * *"
+VAR_cmd_monthly="\[ "$(date '+%u')" = "1" \] && cp -a /data /backup/\$VAR_monthly"  
+VAR_cron_monthly="0 16 0-6 * *"
 
 ## Capabilities
 Can drop all but SETPCAP, SETGID and SETUID.
