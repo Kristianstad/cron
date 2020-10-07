@@ -20,8 +20,7 @@ writeCrontab(){
          cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
       done
       cron="$(removeSingleQuotes ${cronVar#*=})"
-      echo "$cmd" > "/tmp/cron-$name"
-      echo "$cron /usr/bin/env -i /usr/local/bin/dash \"/tmp/cron-$name\"" >> "$tmpFile"
+      echo "$cron /usr/bin/env -i cmd='$cmd' /usr/local/bin/dash -c '\$cmd'" >> "$tmpFile"
    done
    /usr/bin/crontab -u root "$tmpFile"
    /bin/rm -f "$tmpFile"
