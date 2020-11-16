@@ -21,7 +21,7 @@ VAR_cmd_weekly="cp -a /data /backup/\$VAR_weekly"
 VAR_cron_weekly="0 19 * * 5"
 
 >VAR_monthly="/bin/date +%b"  
-VAR_cmd_monthly='\[ "$(date "+%u")" = "1" \] && cp -a /data /backup/\$VAR_monthly'  
+VAR_cmd_monthly='\[ "$(date "+%u")" == "1" \] && cp -a /data /backup/\$VAR_monthly'  
 VAR_cron_monthly="0 16 0-6 * *"
 
 ## Capabilities
