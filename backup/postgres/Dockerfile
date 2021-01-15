@@ -5,7 +5,7 @@
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.1"
+ARG SaM_VERSION="2.0.4"
 ARG IMAGETYPE="application"
 ARG BASEIMAGE="huggla/sam-cron:backup"
 ARG RUNDEPS="libpq libldap"
