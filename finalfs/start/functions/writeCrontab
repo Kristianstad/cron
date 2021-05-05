@@ -18,8 +18,11 @@ writeCrontab(){
       while echo "$cmd" | grep -q '\$[^(]'
       do
          cmd1="${cmd%\$*}"
+         echo "hej1"
+         echo "\$${cmd#*\\\$}" | sed 's/\$(/\\\$(/g'
          cmd2="$(eval "echo \"\$${cmd#*\\\$}\" | sed 's/\$(/\\\$(/g'")"
          cmd="$cmd1$cmd2"
+         echo "hej2"
          echo "$cmd"
          #cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
       done
