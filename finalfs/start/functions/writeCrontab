@@ -15,21 +15,14 @@ writeCrontab(){
       then
          cmd="$(eval "echo \"$VAR_CRON_CMD\" | sed 's/\$(/\\\$(/g'")"
       fi
-      echo "$name"
       while echo "$cmd" | grep -q '\$[^(]'
       do
-#if echo "$cmd" | grep -q '\$[^(]'
-#then
-         cmd1="${cmd%\$*}"
-         echo "hej1"
-         echo "\$${cmd#*\\\$}" | sed 's/\$(/\\\$(/g'
-         cmd2="$(eval "echo \"\$${cmd#*\\\$}\" | sed 's/\$(/\\\$(/g'")"
+         cmd1="${cmd%%\$*}"
+         cmd1="$(echo "$cmd1" | sed 's/\\$//g')"
+         cmd2="\$${cmd#*\$}"
+         cmd2="$(echo "$cmd2" | sed 's/\$(/\\$(/g')"
+         cmd2="$(eval "echo \"$cmd2\"")"
          cmd="$cmd1$cmd2"
-         echo "hej2"
-         echo "$cmd"
-         echo "hej3"
-         #cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
-#fi
       done
       cron="$(removeSingleQuotes ${cronVar#*=})"
       echo "$cron /usr/bin/env -i cmd='$cmd' /usr/local/bin/dash -c 'eval \$cmd'" >> "$tmpFile"
