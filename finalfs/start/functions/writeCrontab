@@ -17,7 +17,11 @@ writeCrontab(){
       fi
       while echo "$cmd" | grep -q '\$[^(]'
       do
-         cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
+         cmd1="${cmd%\$*}"
+         cmd2="$(eval "echo \"${cmd#*\\\$}\" | sed 's/\$(/\\\$(/g'")"
+         cmd="$cmd1$cmd2"
+         echo "$cmd"
+         #cmd="$(eval "echo \"$cmd\" | sed 's/\$(/\\\$(/g'")"
       done
       cron="$(removeSingleQuotes ${cronVar#*=})"
       echo "$cron /usr/bin/env -i cmd='$cmd' /usr/local/bin/dash -c 'eval \$cmd'" >> "$tmpFile"
