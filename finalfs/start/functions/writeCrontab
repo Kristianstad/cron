@@ -13,7 +13,8 @@ writeCrontab(){
       cmd="$(eval "echo \"\$VAR_cmd_$name\"")"
       if [ -z "$cmd" ] && [ -n "$VAR_CRON_CMD" ]
       then
-         cmd="$(eval "echo \"$VAR_CRON_CMD\" | sed 's/\$(/\\\$(/g'")"
+         cmd="$(echo "$VAR_CRON_CMD" | sed 's/\$(/\\\$(/g')"
+         cmd="$(eval "echo \"$cmd\"")"
       fi
       while echo "$cmd" | grep -q '\$[^(]'
       do
