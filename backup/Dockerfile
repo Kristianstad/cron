@@ -33,7 +33,7 @@ COPY --from=build /finalfs /
 # =========================================================================
 ENV VAR_BACKUP_DIR="/backup" \
     VAR_DELETE_DUPLICATES="yes" \
-    VAR_CRON_CMD='/usr/local/bin/backupToDir $VAR_BACKUP_DIR/$name/\$(\$VAR_$name)'
+    VAR_CRON_CMD='/usr/local/bin/backupToDir $VAR_BACKUP_DIR/$name/\\$(\$VAR_$name)'
 
 # Generic template (don't edit) <BEGIN>
 USER starter
