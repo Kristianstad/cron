@@ -22,6 +22,7 @@ writeCrontab(){
          cmd2="\$${cmd#*\$}"
          cmd2="$(echo "$cmd2" | sed 's/\$(/\\$(/g')"
          cmd2="$(eval "echo \"$cmd2\"")"
+         cmd2="$(echo "$cmd2" | sed 's/\\$//g')"
          cmd="$cmd1$cmd2"
       done
       cron="$(removeSingleQuotes ${cronVar#*=})"
