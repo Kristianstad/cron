@@ -38,7 +38,7 @@ VAR_cron_weekly="0 19 \* \* 5"
 
 >VAR_monthly="/bin/date +%b"  
 VAR_cron_monthly="0 17 1 \* \*"
-VAR_cmd_monthly='\[ "$(date "+%u")" = "1" \] && \$VAR_CRON_CMD'
+VAR_cmd_monthly='[ \`date +%u\` -eq 1 ] && \\$VAR_CRON_CMD'
 
 ## Capabilities
 Can drop all but SETPCAP, SETGID and SETUID.
