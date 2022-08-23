@@ -10,7 +10,7 @@ ARG SAMCRON_VERSION="20220821"
 ARG IMAGETYPE="application"
 ARG BASEIMAGE="huggla/sam-cron:backup-$SAMCRON_VERSION"
 ARG RUNDEPS="libpq libldap"
-ARG BUILDDEPS="postgresql-client"
+ARG BUILDDEPS="postgresql14-client"
 ARG BUILDCMDS=\
 "   cp -a /usr/bin/pg_dump* /finalfs/usr/bin/ "\
 "&& cp -a /usr/lib/libsasl2* /finalfs/usr/lib/"
