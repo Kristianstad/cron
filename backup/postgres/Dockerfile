@@ -7,13 +7,14 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_VERSION="2.0.6-3.16"
 ARG SAMCRON_VERSION="20220821"
+ARG POSTGRES_MAINVERSION="14"
 ARG IMAGETYPE="application"
 ARG BASEIMAGE="huggla/sam-cron:backup-$SAMCRON_VERSION"
 ARG RUNDEPS="libpq libldap"
-ARG BUILDDEPS="postgresql14-client"
+ARG BUILDDEPS="postgresql$POSTGRES_MAINVERSION-client"
 ARG MAKEDIRS="/usr/bin"
 ARG BUILDCMDS=\
-"   cp -a /usr/bin/pg_dump* /finalfs/usr/bin/ "\
+"   cp -a /usr/libexec/postgresql$POSTGRES_MAINVERSION/pg_dump* /finalfs/usr/bin/ "\
 "&& cp -a /usr/lib/libsasl2* /finalfs/usr/lib/"
 ARG EXECUTABLES="/usr/bin/pg_dumpall /usr/bin/pg_dump"
 # ARGs (can be passed to Build/Final) </END>
