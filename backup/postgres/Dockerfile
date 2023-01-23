@@ -1,15 +1,14 @@
 # Secure and Minimal image of Cron for backing up Postgresql databases
-# https://hub.docker.com/repository/docker/huggla/sam-cron:backup-postgres
 
 # =========================================================================
 # Init
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
-ARG SaM_VERSION="2.0.6-3.16"
-ARG SAMCRON_VERSION="20220821"
+ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
+ARG ALPINE_VERSION=${ALPINE_VERSION:-3.17}
 ARG POSTGRES_MAINVERSION="14"
 ARG IMAGETYPE="application"
-ARG BASEIMAGE="huggla/sam-cron:backup-$SAMCRON_VERSION"
+ARG BASEIMAGE="ghcr.io/kristianstad/cron:backup-$ALPINE_VERSION"
 ARG RUNDEPS="libpq libldap"
 ARG BUILDDEPS="postgresql$POSTGRES_MAINVERSION-client"
 ARG MAKEDIRS="/usr/bin"
@@ -25,7 +24,7 @@ FROM ${CONTENTIMAGE2:-scratch} as content2
 FROM ${CONTENTIMAGE3:-scratch} as content3
 FROM ${CONTENTIMAGE4:-scratch} as content4
 FROM ${CONTENTIMAGE5:-scratch} as content5
-FROM ${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base} as base
+FROM ${BASEIMAGE:-$SaM_REPO:base-$ALPINE_VERSION} as base
 FROM ${INITIMAGE:-scratch} as init
 # Generic template (don't edit) </END>
 
@@ -33,8 +32,8 @@ FROM ${INITIMAGE:-scratch} as init
 # Build
 # =========================================================================
 # Generic template (don't edit) <BEGIN>
-FROM ${BUILDIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-build} as build
-FROM ${BASEIMAGE:-huggla/secure_and_minimal:$SaM_VERSION-base} as final
+FROM ${BUILDIMAGE:-$SaM_REPO:build-$ALPINE_VERSION} as build
+FROM ${BASEIMAGE:-$SaM_REPO:base-$ALPINE_VERSION} as final
 COPY --from=build /finalfs /
 # Generic template (don't edit) </END>
 
