@@ -6,7 +6,7 @@
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
 ARG ALPINE_VERSION=${ALPINE_VERSION:-3.17}
-ARG POSTGRES_MAINVERSION="14"
+ARG POSTGRES_MAINVERSION="15"
 ARG IMAGETYPE="application"
 ARG BASEIMAGE="ghcr.io/kristianstad/cron:backup-$ALPINE_VERSION"
 ARG RUNDEPS="libpq libldap"
