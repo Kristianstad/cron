@@ -5,7 +5,8 @@
 # =========================================================================
 # ARGs (can be passed to Build/Final) <BEGIN>
 ARG SaM_REPO=${SaM_REPO:-ghcr.io/kristianstad/secure_and_minimal}
-ARG ALPINE_VERSION=${ALPINE_VERSION:-3.17}
+# OBS! ALPINE_VERSION sätts i .github/workflows/docker-image-backup.yml
+ARG ALPINE_VERSION=${ALPINE_VERSION:-3.18}
 ARG IMAGETYPE="base"
 ARG BASEIMAGE="ghcr.io/kristianstad/cron:$ALPINE_VERSION"
 # ARGs (can be passed to Build/Final) </END>
